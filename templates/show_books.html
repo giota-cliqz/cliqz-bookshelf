@@ -3,6 +3,11 @@
   <ul class=books>
   {% for book in books %}
     <li><h2>{{ book.title }} by {{ book.author }}</h2>{{ book.description|safe }}
+    <form action="{{ url_for('borrow_book') }}" method=post > 
+      <input type="submit" name="action" value="borrow">
+      <input type="hidden" name="user_id" value="{{session.user_id}}">
+      <input type="hidden" name="book_id" value="{{book.id}}">
+    </form>
   {% else %}
     <li><em>Unbelievable.  No books here so far</em>
   {% endfor %}

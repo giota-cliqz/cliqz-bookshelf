@@ -49,10 +49,18 @@ def close_db(error):
 def show_books():
 	flash('show_books')
 	db = get_db()
-	cur = db.execute('select title, description, author from books order by id desc')
+	cur = db.execute('select id ,title, description, author from books order by id desc')
 	books = cur.fetchall()
 	return render_template('show_books.html', books=books)
 
+@app.route('/borrow_book', methods=['GET','POST'])
+def borrow_book():
+	db = get_db()
+	cur = db.execute('insert into borrowed (user_id, book_id) values (?, ?)', [request.form['user_id'], request.form['book_id']])
+	db.commit()
+	cur = db.execute('Select *, borrowed.user_id AS user_id, borrowed.book_id AS book_id from borrowed INNER JOIN users ON borrowed.user_id = users.id INNER JOIN books ON borrowed.book_id = books.id WHERE users.email=?', [session['email']])
+	borrowed = cur.fetchall()
+	return render_template('show_borrowed.html', borrowed=borrowed)
 
 @app.route('/add', methods=['GET'])
 def show_add_book():
@@ -69,7 +77,13 @@ def add_book():
 	flash('New entry was successfully posted')
 	return redirect(url_for('show_books'))
 
-
+@app.route('/borrowed')
+def borrowed():
+	flash('borrowed books')
+	db = get_db()
+	cur = db.execute('Select *, borrowed.user_id AS user_id, borrowed.book_id AS book_id from borrowed INNER JOIN users ON borrowed.user_id = users.id INNER JOIN books ON borrowed.book_id = books.id WHERE users.email=?', [session['email']])
+	borrowed = cur.fetchall()
+	return render_template('show_borrowed.html', borrowed=borrowed)
 
 @app.route('/login', methods=['GET'])
 def show_login():
@@ -89,6 +103,8 @@ def login():
     print ('OK.', file=sys.stderr)
     session['logged_in'] = True 
     session['isAdmin'] = cursor['admin']
+    session['email'] = cursor['email']
+    session['user_id'] = cursor['id']
     return redirect(url_for('show_books'))
     # 
 

@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=books>
+  {% for book in borrowed %}
+    <li><h2>{{ book.title }} by {{ book.author }}</h2>{{ book.description|safe }}
+  {% else %}
+    <li><em>Unbelievable.  No books here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}

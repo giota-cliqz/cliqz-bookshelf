@@ -16,3 +16,16 @@ create table users (
 	password text not null,
 	admin boolean not null
 );
+
+drop table if exists borrowed;
+create table borrowed (
+	id integer primary key autoincrement,
+	user_id integer not null,
+	book_id integer not null,
+	start_date date null,
+	return_date date null,
+	expected_date date null,
+	FOREIGN KEY (user_id) REFERENCES users(ID),
+    FOREIGN KEY (book_id) REFERENCES books(ID)
+);
+
