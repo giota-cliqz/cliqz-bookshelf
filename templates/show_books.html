@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=books>
+  {% for book in books %}
+    <li><h2>{{ book.title }} by {{ book.author }}</h2>{{ book.description|safe }}
+  {% else %}
+    <li><em>Unbelievable.  No books here so far</em>
+  {% endfor %}
+  </ul>
+   <a href="/add"><button type="button">Add a Book</button></a> 
+{% endblock %}
+

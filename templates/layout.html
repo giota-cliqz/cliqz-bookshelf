@@ -1,0 +1,28 @@
+<!doctype html>
+<title>Bookshelf</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1>Bookshelf</h1>
+  <div class=metanav>
+
+  {% if session.isAdmin == 1 %}
+    <a href="{{ url_for('show_users') }}">Users</a>
+  {% endif %}  
+    <a href="{{ url_for('show_books') }}">Books</a>
+  
+
+  
+  
+  {% if not session.logged_in %}
+  <a href="{{ url_for('login') }}">Log In</a>  
+  {% else %}
+  <a href="{{ url_for('logout') }}">Log Out</a>  
+  {% endif %}
+    
+  </div>
+
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>

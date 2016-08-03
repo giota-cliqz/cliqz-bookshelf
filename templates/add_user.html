@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if true %}
+  <form action="{{ url_for('add_user') }}" method=post class=add-user>
+    <dl>
+      <dt>First Name:
+      <dd><input type=text size=30 name=first_name>
+      <dt>Last name:
+      <dd><input type=text size=30 name=last_name>
+      <dt>Email:
+      <dd><input type=text size=30 name=email>
+      <dt>Password:
+      <dd><input type=text size=30 name=password>
+      <dd><input type=submit value=Adduser>
+    </dl>
+  </form>
+  {% endif %}
+{% endblock %}
