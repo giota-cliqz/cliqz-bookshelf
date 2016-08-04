@@ -1,18 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
+{% from "_formhelpers.html" import render_field %}
 {% if true %}
   <article id="main-content">
     <form action="{{ url_for('add_user') }}" method=post class=add-user>
       <dl>
-        <dt>First Name:</dt>
-        <dd><input type=text size=30 name=first_name></dd>
-        <dt>Last name:</dt>
-        <dd><input type=text size=30 name=last_name></dd>
-        <dt>Email:</dt>
-        <dd><input type=text size=30 name=email></dd>
-        <dt>Password:</dt>
-        <dd><input type=text size=30 name=password></dd>
-        <dd><input type=submit value=Adduser></dd>
+        {{ render_field(form.first_name) }}
+        {{ render_field(form.last_name) }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.password) }}
+        <dd><input type=submit value=Adduser class="button primary"></dd>
       </dl>
     </form>
   </article>

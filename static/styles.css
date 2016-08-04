@@ -11,7 +11,7 @@
     box-sizing: border-box;
 }
 
-blockquote, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, li, ol, p, pre, td, th, ul {
+blockquote, dd, div, dt, h1, h2, h3, h4, h5, h6, li, ol, p, pre, td, th, ul {
   margin: 0;
   padding: 0;
 }
@@ -226,6 +226,44 @@ img {
   text-align: center;
 }
 
+.form-central{
+   max-width: 700px;
+   margin:0 auto;  
+}
+
+.account-graphic{
+  float: left;
+  width:309px;
+  min-height: 1px;
+}
+
+.account-content{
+  float: left;
+  width: 325px;
+}
+
+.account-graphic svg{
+  padding-right: 55px;
+}
+
+.account-content h2{
+  margin: 0;
+  padding: 0 0 5px;
+  font-family: Lato;
+  display: block;
+}
+
+.account-content h2 span {
+  font-size: 38px;
+  color: rgb(64, 64, 76);
+  font-weight: 400; 
+}
+
+.bookshelf {
+  font-size: 72px;
+  font-weight: 700;
+}
+
 @media screen and (min-width: 40em) {
   .medium-4 {
     -ms-flex: 0 0 33.33333%;
@@ -330,4 +368,5 @@ img {
   .product-list {
     padding-top: 0;
   }
+
 }
