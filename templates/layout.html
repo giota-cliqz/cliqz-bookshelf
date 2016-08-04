@@ -1,26 +1,53 @@
 <!doctype html>
 <title>Bookshelf</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-<div class=page>
-  <h1>Bookshelf</h1>
-  <div class=metanav>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
 
-  {% if session.isAdmin == 1 %}
-    <a href="{{ url_for('show_users') }}">Users</a>
-  {% endif %}  
-  <a href="{{ url_for('show_books') }}">Books</a>
-  
-  {% if not session.logged_in %}
-    <a href="{{ url_for('login') }}">Log In</a>  
-  {% else %}
-    <a href="{{ url_for('borrowed') }}">borrowed</a>
-    <a href="{{ url_for('logout') }}">Log Out</a>  
-  {% endif %}
-    
-  </div>
+  <header id="main-nav" style="top: 0px;">
+    <div class="row">
+      <div class="columns medium-4 small-1 hide-small-only">
+          <div id="logo" class="hide-for-small-only">
+            <a href="{{url_for('show_books')}}">CLIQZ Bookshelf</a>
+          </div>
+
+          <div id="logo" class="show-for-small-only">
+            <a href="{{url_for('show_books')}}">
+              <img src="https://s3.eu-central-1.amazonaws.com/boldking-static/static/img/home.png" alt="home" width="18" height="18">
+            </a>
+          </div>
+      </div>
+      <div class="columns medium-8 small-11 text-right">
+        <nav id="menu">
+          <ul>
+            {% if session.isAdmin == 1 %}
+            <li class="show-for-menium">
+              <a {% if request.path == '/users' %} class="active" {% endif %} href="{{ url_for('show_users') }}">Users</a>
+            </li>
+            {% endif %}
+            <li>
+              <a {% if request.path == '/' %} class="active" {% endif %} href="{{ url_for('show_books') }}">
+                Books
+              </a>
+            </li>
+            {% if not session.logged_in %}
+            <li class="nav-login">
+              <a {% if request.path == '/login' %} class="active" {% endif %} href="{{ url_for('login') }}">Login</a>
+            </li>
+            {% else %}
+              <li class="nav-login">
+                <a {% if request.path == '/borrowed' %} class="active" {% endif %} href="{{ url_for('borrowed') }}">borrowed</a>
+              </li>
+              <li class="nav-login">
+                <a {% if request.path == '/logout' %} class="active" {% endif %} href="{{ url_for('logout') }}">Log Out</a>  
+              </li>
+            {% endif %}             
+          </ul>
+        </nav>  
+      </div>
+    </div>
+  </header>
 
   {% for message in get_flashed_messages() %}
     <div class=flash>{{ message }}</div>
   {% endfor %}
   {% block body %}{% endblock %}
-</div>
+

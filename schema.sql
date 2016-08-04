@@ -3,7 +3,8 @@ create table books (
 	id integer primary key autoincrement,
 	title text not null,
 	description text not null,
-	author text not null
+	author text not null,
+	thumbnail text null
 );
 
 

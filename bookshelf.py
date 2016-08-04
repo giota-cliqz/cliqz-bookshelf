@@ -4,10 +4,15 @@ import os
 import sys
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
-	  render_template, flash
+	  render_template, flash, send_from_directory
+from werkzeug.utils import secure_filename
 
-app = Flask(__name__)
+UPLOAD_FOLDER = 'uploads'
+
+app = Flask(__name__, static_url_path='', static_folder='static')
 app.config.from_object(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 app.config.update(dict(
 	DATABASE=os.path.join(app.root_path, 'bookshelf.db'),
@@ -30,10 +35,10 @@ def init_db():
 			db.cursor().executescript(f.read())
 		db.commit()
 
-@app.cli.command('initdb')
-def initdb_command():
-	init_db()
-	print ('Initialized the database.', file=sys.stderr)
+# @app.cli.command('initdb')
+# def initdb_command():
+# 	init_db()
+# 	print ('Initialized the database.', file=sys.stderr)
 
 def get_db():
 	if not hasattr(g, 'sqlite_db'):
@@ -49,9 +54,14 @@ def close_db(error):
 def show_books():
 	flash('show_books')
 	db = get_db()
-	cur = db.execute('select id ,title, description, author from books order by id desc')
+	cur = db.execute('select * from books order by id desc')
 	books = cur.fetchall()
 	return render_template('show_books.html', books=books)
+
+@app.route('/uploads/<filename>')
+def send_file(filename):
+  return send_from_directory(UPLOAD_FOLDER, filename)
+
 
 @app.route('/borrow_book', methods=['GET','POST'])
 def borrow_book():
@@ -140,4 +150,4 @@ def add_user():
 if __name__ == '__main__':
 	if len(sys.argv)>1 and sys.argv [1]== 'initdb':
 		init_db()
-	app.run('0.0.0.0', 5000)
+	app.run(host='0.0.0.0', port=8080)

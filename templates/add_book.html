@@ -1,16 +1,18 @@
 {% extends "layout.html" %}
 {% block body %}
 {% if true %}
-  <form action="{{ url_for('add_book') }}" method=post class=add-book>
-    <dl>
-      <dt>Title:
-      <dd><input type=text size=30 name=title>
-      <dt>Description:
-      <dd><textarea name=description rows=5 cols=40></textarea>
-      <dt>Author:
-      <dd><input type=text size=30 name=author>
-      <dd><input type=submit value=AddBook>
-    </dl>
-  </form>
-  {% endif %}
+  <article id="main-content">
+    <form action="{{ url_for('add_book') }}" method=post class=add-book>
+      <dl>
+        <dt>Title:</dt>
+        <dd><input type=text size=30 name=title></dd>
+        <dt>Description:</dt>
+        <dd><textarea name=description rows=5 cols=40></textarea></dd>
+        <dt>Author:</dt>
+        <dd><input type=text size=30 name=author></dd>
+        <dd><input type=submit value=AddBook></dd>
+      </dl>
+    </form>
+  </article>
+{% endif %}
 {% endblock %}

@@ -1,12 +1,13 @@
 {% extends "layout.html" %}
 {% block body %}
-  
-  <ul class=users>
-  {% for user in users %}
-    <li><h2>{{ user.first_name }} {{ user.last_name }}</h2>{{ user.email }}
-  {% else %}
-    <li><em>Unbelievable.  No users here so far</em>
-  {% endfor %}
-  </ul>
-  <a href="/users/add"><button type="button">Add a User</button></a> 
+  <article id="main-content">
+    <ul class=users>
+    {% for user in users %}
+      <li><h2>{{ user.first_name }} {{ user.last_name }}</h2>{{ user.email }}</li>
+    {% else %}
+      <li><em>Unbelievable.  No users here so far</em></li>
+    {% endfor %}
+    </ul>
+    <a href="/users/add"><button type="button">Add a User</button></a> 
+  </article>
 {% endblock %}

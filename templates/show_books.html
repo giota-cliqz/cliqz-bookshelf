@@ -1,17 +1,44 @@
 {% extends "layout.html" %}
 {% block body %}
-  <ul class=books>
-  {% for book in books %}
-    <li><h2>{{ book.title }} by {{ book.author }}</h2>{{ book.description|safe }}
-    <form action="{{ url_for('borrow_book') }}" method=post > 
-      <input type="submit" name="action" value="borrow">
-      <input type="hidden" name="user_id" value="{{session.user_id}}">
-      <input type="hidden" name="book_id" value="{{book.id}}">
-    </form>
-  {% else %}
-    <li><em>Unbelievable.  No books here so far</em>
-  {% endfor %}
-  </ul>
-   <a href="/add"><button type="button">Add a Book</button></a> 
+<article id="main-content">
+  <section id="books" class="checkoutblock">
+    <div class="product-list">
+      <div class="row small-up-1 medium-up-2 large-up-3">
+        {% for book in books %}
+          <div class="column text-center">
+            <a href="#">
+              {%if book.thumbnail != None %}
+                <img src="{{ url_for('send_file', filename=book.thumbnail) }}" width="350" />
+              {% else %}
+                <img src="{{ url_for('static', filename='no_photo.jpg') }}" width="350" /> 
+              {% endif %}
+            </a>
+            <div class="meta">
+              <div class="title">
+                <h3>{{ book.title }}</h3>
+              </div>
+              <div class="author">
+                by {{ book.author }}
+              </div>
+              <form action="{{ url_for('borrow_book') }}" method=post > 
+                <input type="submit" name="action" value="borrow" class="button primary">
+                <input type="hidden" name="user_id" value="{{session.user_id}}">
+                <input type="hidden" name="book_id" value="{{book.id}}">
+              </form>
+            </div>
+          </div>
+        {% else %}
+          <div>
+            <em>Unbelievable.  No books here so far</em>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+   <a class="add" href="/add">
+    <button type="button" class="button add-btn">Add a Book</button>
+  </a> 
+</article>
 {% endblock %}
 
