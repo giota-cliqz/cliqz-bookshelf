@@ -264,6 +264,32 @@ img {
   font-weight: 700;
 }
 
+.form-style-5{
+  max-width: 500px;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  margin: 10px auto;
+  padding: 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.form-style-5 input[type="submit"], .form-style-5 input[type="button"] {
+  position: relative;
+  display: block;
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  margin: 0 auto;
+  background: #B0C4DE;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  width: 62%;
+  border: 1px solid #5F9EA0;
+  margin-bottom: 10px;
+}
+
 @media screen and (min-width: 40em) {
   .medium-4 {
     -ms-flex: 0 0 33.33333%;

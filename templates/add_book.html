@@ -2,17 +2,21 @@
 {% block body %}
 {% if true %}
   <article id="main-content">
-    <form action="{{ url_for('add_book') }}" method=post class=add-book>
-      <dl>
-        <dt>Title:</dt>
-        <dd><input type=text size=30 name=title></dd>
-        <dt>Description:</dt>
-        <dd><textarea name=description rows=5 cols=40></textarea></dd>
-        <dt>Author:</dt>
-        <dd><input type=text size=30 name=author></dd>
-        <dd><input type=submit value=AddBook></dd>
-      </dl>
-    </form>
+    <div class="form-style-5">
+      <form action="{{ url_for('add_book') }}" method=post class=add-book>
+        <dl>
+          <dt>Title:</dt>
+          <dd><input type=text size=30 name=title placeholder="Book Name"></dd>
+          <dt>Description:</dt>
+          <dd><textarea name=description placeholder="Descriotion The Book" rows=5 cols=40></textarea></dd>
+          <dt>Author:</dt>
+          <dd><input type=text size=30 name=author placeholder="Author Name"></dd>
+          <dt>Year:</dt>
+          <dd><input type=date size=4 name=year placeholder="2016"></dd>
+          <dd><input type=submit value=AddBook></dd>
+        </dl>
+      </form>
+    </div>
   </article>
 {% endif %}
 {% endblock %}
