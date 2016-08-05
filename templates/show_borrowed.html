@@ -1,12 +1,14 @@
 {% extends "layout.html" %}
 {% block body %}
   <article id="main-content">
-    <ul class=books>
-    {% for book in borrowed %}
-      <li><h2>{{ book.title }} by {{ book.author }}</h2>{{ book.description|safe }}</li>
-    {% else %}
-      <li><em>Unbelievable.  No books here so far</em></li>
-    {% endfor %}
-    </ul>
+    <div class="row-medium row">
+      <ul class="books ">
+      {% for book in borrowed %}
+        <li><h2>{{ book.title }} by {{ book.author }}</h2>{{ book.description|safe }}</li>
+      {% else %}
+        <li><em>Unbelievable.  No books here so far</em></li>
+      {% endfor %}
+      </ul>
+  </div>
   </article>
 {% endblock %}

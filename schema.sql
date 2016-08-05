@@ -4,7 +4,10 @@ create table books (
 	title text not null,
 	description text not null,
 	author text not null,
-	thumbnail text null
+	isborrowed boolean not null,
+	thumbnail text null,
+	user_id integer,
+	FOREIGN KEY (user_id) REFERENCES users(ID)
 );
 
 
@@ -27,6 +30,6 @@ create table borrowed (
 	return_date date null,
 	expected_date date null,
 	FOREIGN KEY (user_id) REFERENCES users(ID),
-    FOREIGN KEY (book_id) REFERENCES books(ID)
+  FOREIGN KEY (book_id) REFERENCES books(ID)
 );
 
