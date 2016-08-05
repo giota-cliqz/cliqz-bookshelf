@@ -323,7 +323,8 @@ img {
   font-style: italic;
 }
 
-.borrowed-page {
+.borrowed-page,
+.login-page {
   margin-top: 50px;
 }
 
@@ -418,10 +419,25 @@ img {
   display: block;
 }
 
-.account-content h2 span {
+.account-content h2 span.login-to {
   font-size: 38px;
   color: rgb(64, 64, 76);
   font-weight: 400; 
+}
+
+.account-content input {
+  width: 100%;
+  margin: 8px 0 0;
+  height: 30px;
+}
+
+.account-content dl {
+  margin-bottom: 10px;
+}
+
+.account-content input[type="submit"] {
+  border-radius: 4px;
+  line-height: 1;
 }
 
 .bookshelf {
@@ -453,6 +469,10 @@ img {
   width: 62%;
   border: 1px solid #5F9EA0;
   margin-bottom: 10px;
+}
+
+.clear {
+  clear: both;
 }
 
 @media screen and (min-width: 40em) {
