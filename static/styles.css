@@ -335,7 +335,7 @@ img {
 .borrowed-page .book-thumb {
   float:left; 
   width:200px; 
-  margin-left:20px;
+  margin-right:20px;
 }
 
 .borrowed-page .book-desc {
