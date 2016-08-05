@@ -252,6 +252,14 @@ img {
   background: #19d3be;
 }
 
+.button.borrowed {
+  background: #FFA75F;
+}
+
+.button.return {
+  background: #166C3B;
+}
+
 .button {
   height: 40px;
   padding: 0 20px;

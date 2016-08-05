@@ -5,7 +5,6 @@
     <div class="product-list">
       <div class="row small-up-1 medium-up-2 large-up-3">
         {% for book in books %}
-          {{book.return_date}}
           <div class="column text-center">
             <a href="#">
               {%if book.thumbnail != None %}
@@ -23,22 +22,29 @@
               </div>
               {%if (book.isborrowed == 1 and book.user_id == session['user_id']) %}
               <form action="{{ url_for('return_book') }}" method=post > 
-                <input type="submit" name="action" value="return" class="button primary">
+                <input type="submit" name="action" value="return" class="button return">
                 <input type="hidden" name="user_id" value="{{session.user_id}}">
                 <input type="hidden" name="book_id" value="{{book.id}}">
               </form>
               {% elif (book.isborrowed == 1 and book.user_id != session['user_id']) %}
-                <div class="countDown">
+                <!-- <div class="countDown">
                    <span id="days">00</span>
                    <span id="hours">00</span>
                    <span id="minutes">00</span>
                    <span id="seconds">00</span>
-                </div>
-              {% else %}
-              <form action="{{ url_for('borrow_book') }}" method=post > 
+                </div> -->
+                <input type="submit" name="action" value="borrowed" class="button borrowed">
+              {% elif (book.isborrowed == 0 and session.logged_in) %}
+                  <form action="{{ url_for('borrow_book') }}" method=post > 
                 <input type="submit" name="action" value="borrow" class="button primary">
                 <input type="hidden" name="user_id" value="{{session.user_id}}">
                 <input type="hidden" name="book_id" value="{{book.id}}">
+              </form>
+
+
+              {% else %}
+                <form action="{{ url_for('login') }}" method=post > 
+                  <input type="submit" name="action" value="available" class="button primary">
               </form>
               {% endif %}
             </div>
