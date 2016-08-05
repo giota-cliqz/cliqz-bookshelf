@@ -128,10 +128,8 @@ def show_add_book():
 
 @app.route('/add', methods=['POST'])
 def add_book():
-	if not session.get('logged_in'):
-		abort(401)
 	db = get_db()
-	db.execute('insert into books (title, description, author) values (?, ?, ?)', [request.form['title'], request.form['description'], request.form['author']])
+	db.execute('insert into books (title, description, author,isborrowed,user_id) values (?, ?, ?, ?, ?)', [request.form['title'], request.form['description'], request.form['author'], 0, ''])
 	db.commit()
 	flash('New entry was successfully posted')
 	return redirect(url_for('show_books'))

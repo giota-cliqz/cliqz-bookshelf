@@ -8,9 +8,9 @@
           <div class="column text-center">
             <a href="#">
               {%if book.thumbnail != None %}
-                <img src="{{ url_for('send_file', filename=book.thumbnail) }}" width="350" />
+                <img src="{{ url_for('send_file', filename=book.thumbnail) }}" width="300" />
               {% else %}
-                <img src="{{ url_for('static', filename='no_photo.jpg') }}" width="350" /> 
+                <img src="{{ url_for('static', filename='no_photo.jpg') }}" width="300" /> 
               {% endif %}
             </a>
             <div class="meta">
