@@ -108,7 +108,7 @@ def borrow_book():
 @app.route('/return_book', methods=['GET','POST'])
 def return_book():
 	db = get_db()
-	cur = db.execute('DELETE FROM borrowed WHERE book_id=?', [request.form['book_id']])
+	cur = db.execute('DELETE FROM borrowed WHERE book_id=? AND user_id=?', [request.form['book_id'], session['user_id']])
 	db.commit()
 	cur = db.execute('UPDATE books SET isborrowed = 0 where books.id=?',[request.form['book_id']])
 	db.commit()

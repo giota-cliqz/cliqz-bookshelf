@@ -1,10 +1,28 @@
 {% extends "layout.html" %}
 {% block body %}
-  <article id="main-content">
+  <article id="main-content" class="borrowed-page">
     <div class="row-medium row">
       <ul class="books ">
       {% for book in borrowed %}
-        <li><h2>{{ book.title }} by {{ book.author }}</h2>{{ book.description|safe }}</li>
+        <li>
+          <div class="book-item">
+            <div class="book-thumb">
+              <img  width=150 src="{{ url_for('send_file', filename=book.thumbnail) }}" />
+            </div>
+            <div class="book-desc">
+              <h2 >{{ book.title }} by {{ book.author }}</h2>
+              <p>{{ book.description|safe }}</p>
+            </div>
+            <div class="book-return">
+              <form action="{{ url_for('return_book') }}" method=post > 
+                <input type="submit" name="action" value="return" class="button return">
+                <input type="hidden" name="user_id" value="{{session.user_id}}">
+                <input type="hidden" name="book_id" value="{{book.book_id}}">
+              </form>
+            </div>
+            <div style="clear:both"></div>
+          </div>
+        </li>
       {% else %}
         <li><em>Unbelievable.  No books here so far</em></li>
       {% endfor %}

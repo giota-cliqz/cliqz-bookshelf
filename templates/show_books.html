@@ -33,7 +33,7 @@
                    <span id="minutes">00</span>
                    <span id="seconds">00</span>
                 </div> -->
-                <input type="submit" name="action" value="borrowed" class="button borrowed">
+                <input type="submit" name="action" value="not available" class="button borrowed">
               {% elif (book.isborrowed == 0 and session.logged_in) %}
                   <form action="{{ url_for('borrow_book') }}" method=post > 
                 <input type="submit" name="action" value="borrow" class="button primary">
